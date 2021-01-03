@@ -1,6 +1,6 @@
 name: "website"
 navbar:
-  title: "Covid-19"
+  #title: "Covid-19"
   left:
     - text: "The World"
       href: index.html
