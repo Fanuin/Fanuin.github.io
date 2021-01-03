@@ -3,13 +3,16 @@
     "path": "~/Github/Fanuin.github.io/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "3513054048",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1609669703723.0,
     "source_on_save": false,
     "relative_order": 1,
-    "properties": {},
+    "properties": {
+        "cursorPosition": "7,15",
+        "scrollLine": "0"
+    },
     "folds": "",
     "lastKnownWriteTime": 1609164435,
     "encoding": "UTF-8",
