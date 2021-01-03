@@ -1,0 +1,41 @@
+---
+title: "Covid 19 across space and time"
+date: "25 11 2020"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+library(plotly)
+
+#knitr::opts_knit$set(self_contained = TRUE) #otherwise separate files generated (in addition to index) 
+```
+
+## Covid 19 across space and time
+
+Since this year mankind has to deal with the communicable disease Covid 19. People across many countries and societies as a whole are affected from both an epidemiological and economic point of view.
+
+As the number of infected persons and fatal cases vary strongly across different countries and across time, it is of interest to develop an analytic tool that summarizes these patterns. The following app designed to do so: 
+
+ <https://fanuin.shinyapps.io/covid19_space_time/>.
+
+
+## Covid 19 across space and time: how?
+
+### We use 
+- data from https://github.com/GoogleCloudPlatform/covid-19-open-data
+- country-level information combined with R-library 'countrycode'
+- Plotly to visualize the relationship between both cumulative mortality and incidence on the country level and for the continents, from January 2020 to month x.
+- The numbers are provided per 100.000 persons. 
+
+## Covid 19 Example: month July
+
+
+```{r , echo=TRUE}
+load("data_plot.RData")
+#cumulative death rate: y-axis, cumulatice incidence: x-axis
+plot_ly(data_plot, x = ~cov19_cases_new_rel, y = ~cov19_decsd_new_rel, type="scatter", color = ~continent,mode = 'markers', hoverinfo = 'text',text = ~paste('</br> Country: ',countries_and_territories)) %>% 
+  layout(autosize = F, width = 300, height = 300)
+
+```
+
+### Thanks! :)
