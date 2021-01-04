@@ -1,11 +1,11 @@
 name: "website"
 navbar:
-  #title: "Covid-19"
+  title: "Covid-19"
   left:
     - text: "The World"
       href: index.html
-    #- text: "Germany"
-    #  href: Covid_19_Germany.html
+    - text: "Germany"
+      href: Covid_19_Germany.html
 output:
   html_document:
     theme: readable
