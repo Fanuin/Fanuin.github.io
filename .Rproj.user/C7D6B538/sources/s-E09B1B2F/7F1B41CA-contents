@@ -39,7 +39,7 @@ Figure 1 shows the mortality up to week 46 for year 2020 in contrast to the mean
 pop <- read_csv("Bevoelkerung_destatis.csv")
 
 #source: https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/Tabellen/sonderauswertung-sterbefaelle.html?nn=209016
-deaths <- read_csv("Sterbefaelle_Bundesland_destatis.csv") 
+deaths <- read_csv2("Sterbefaelle_Bundesland_destatis.csv") 
 
 pop_tab <- pop %>%
   gather(`31.12.2015`, `31.12.2016`,`31.12.2017`,`31.12.2018`,`31.12.2019`,
@@ -49,7 +49,7 @@ pop_tab <- pop %>%
 
 deaths_tab <- deaths %>%
       select(-Insgesamt) %>%
-      gather(`01.01.`:`22.11.`,
+      gather(`01.01.`:`20.12.`,
              key=day_month, value=deaths)  %>%
     mutate(day=dmy(paste0(day_month, Jahr)), deaths=as.integer(deaths)) %>%
       select(`Nr.`, Jahr, Bundesland, day_month, deaths, day) %>%
@@ -142,7 +142,9 @@ title1=textGrob("Figure 1:Weekly mortality in Germany", gp=gpar(fontface="bold")
 grid.arrange(p1,  p2, ncol=2, top=title1)
 ```
 
-When interpreting this figure we have to acknowledge that in 2018 there was a very high mortality due to a very severe influenza season in the first quarter. We see for 2020 three peaks of relatively high mortality in week 15, around week 32, and from week 42 onward. The first and the last peak was correlated with strong policy interventions ("lockdown"). We also see that the cumulative mortality in 2020 was relatively high, striving towards the maximum mortality of year 2018, which may justify the interventions. Our findings are in line with @zur2020sonderauswertung, who argued that absolute mortality in 2020 will probably not be higher than that of year 2018. 
+When interpreting this figure we have to acknowledge that in 2018 there was a very high mortality due to a very severe influenza season in the first quarter. We see for 2020 three peaks of relatively high mortality in week 15, around week 32, and from week 42 onward. The first and the last peak was correlated with strong policy interventions ("lockdown"). We also see that the cumulative mortality in 2020 was relatively high, striving towards the maximum mortality of year 2018, which was used to justify the interventions. 
+
+<!--Our findings are in line with @zur2020sonderauswertung, who argued that absolute mortality in 2020 will probably not be higher than that of year 2018. -->
 
 ## Mortality per capita
 
@@ -193,6 +195,7 @@ grid.arrange(p3,  p4, ncol=2, top=title2)
 
 ```
 
-We find that changes of the number of citizens did not alter the found pattern from above. In the end of 2020 mortality increased. However, until week 46 the cumulative mortality did not exceed the one of year 2018, in which a severe influenza season took place. 
+We find that changes of the number of citizens did not alter the found pattern from above. In the end of 2020 overall mortality increased strongly, probably driven by Covid-19. 
+<!--However, until week 46 the cumulative mortality did not exceed the one of year 2018, in which a severe influenza season took place.--> 
 
 ## Literature

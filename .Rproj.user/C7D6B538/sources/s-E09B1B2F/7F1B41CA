@@ -3,22 +3,22 @@
     "path": "~/Github/Fanuin.github.io/Covid_19_Germany.Rmd",
     "project_path": "Covid_19_Germany.Rmd",
     "type": "r_markdown",
-    "hash": "3428170636",
+    "hash": "4077782121",
     "contents": "",
     "dirty": false,
     "created": 1609797230595.0,
     "source_on_save": false,
     "relative_order": 4,
     "properties": {
-        "cursorPosition": "23,0",
-        "scrollLine": "15"
+        "cursorPosition": "197,173",
+        "scrollLine": "186"
     },
     "folds": "",
-    "lastKnownWriteTime": 1609797242,
+    "lastKnownWriteTime": 1610731543,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1609797242672,
+    "last_content_update": 1610731543307,
     "read_only": false,
     "read_only_alternatives": []
 }

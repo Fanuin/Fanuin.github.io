@@ -317,7 +317,7 @@ $(document).ready(function () {
 pop &lt;- read_csv(&quot;Bevoelkerung_destatis.csv&quot;)
 
 #source: https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/Tabellen/sonderauswertung-sterbefaelle.html?nn=209016
-deaths &lt;- read_csv(&quot;Sterbefaelle_Bundesland_destatis.csv&quot;) 
+deaths &lt;- read_csv2(&quot;Sterbefaelle_Bundesland_destatis.csv&quot;) 
 
 pop_tab &lt;- pop %&gt;%
   gather(`31.12.2015`, `31.12.2016`,`31.12.2017`,`31.12.2018`,`31.12.2019`,
@@ -327,7 +327,7 @@ pop_tab &lt;- pop %&gt;%
 
 deaths_tab &lt;- deaths %&gt;%
       select(-Insgesamt) %&gt;%
-      gather(`01.01.`:`22.11.`,
+      gather(`01.01.`:`20.12.`,
              key=day_month, value=deaths)  %&gt;%
     mutate(day=dmy(paste0(day_month, Jahr)), deaths=as.integer(deaths)) %&gt;%
       select(`Nr.`, Jahr, Bundesland, day_month, deaths, day) %&gt;%
@@ -419,7 +419,8 @@ p2 &lt;- ggplot(pop_death_time_comp_cum, aes(x=week, y=deceased/1000, group=lege
 title1=textGrob(&quot;Figure 1:Weekly mortality in Germany&quot;, gp=gpar(fontface=&quot;bold&quot;))
 grid.arrange(p1,  p2, ncol=2, top=title1)</code></pre>
 <p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>When interpreting this figure we have to acknowledge that in 2018 there was a very high mortality due to a very severe influenza season in the first quarter. We see for 2020 three peaks of relatively high mortality in week 15, around week 32, and from week 42 onward. The first and the last peak was correlated with strong policy interventions (“lockdown”). We also see that the cumulative mortality in 2020 was relatively high, striving towards the maximum mortality of year 2018, which may justify the interventions. Our findings are in line with <span class="citation">Zur Nieden, Sommer, and Lüken (2020)</span>, who argued that absolute mortality in 2020 will probably not be higher than that of year 2018.</p>
+<p>When interpreting this figure we have to acknowledge that in 2018 there was a very high mortality due to a very severe influenza season in the first quarter. We see for 2020 three peaks of relatively high mortality in week 15, around week 32, and from week 42 onward. The first and the last peak was correlated with strong policy interventions (“lockdown”). We also see that the cumulative mortality in 2020 was relatively high, striving towards the maximum mortality of year 2018, which was used to justify the interventions.</p>
+<!--Our findings are in line with @zur2020sonderauswertung, who argued that absolute mortality in 2020 will probably not be higher than that of year 2018. -->
 </div>
 <div id="mortality-per-capita" class="section level2">
 <h2>Mortality per capita</h2>
@@ -466,15 +467,10 @@ p4 &lt;- ggplot(pop_death_time_comp_cum_rel, aes(x=week, y=deceased*100000, grou
 title2=textGrob(&quot;Figure 2: Weekly mortality per capita in Germany&quot; , gp=gpar(fontface=&quot;bold&quot;))
 grid.arrange(p3,  p4, ncol=2, top=title2)</code></pre>
 <p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>We find that changes of the number of citizens did not alter the found pattern from above. In the end of 2020 mortality increased. However, until week 46 the cumulative mortality did not exceed the one of year 2018, in which a severe influenza season took place.</p>
+<p>We find that changes of the number of citizens did not alter the found pattern from above. In the end of 2020 overall mortality increased strongly, probably driven by Covid-19. <!--However, until week 46 the cumulative mortality did not exceed the one of year 2018, in which a severe influenza season took place.--></p>
 </div>
-<div id="literature" class="section level2 unnumbered">
+<div id="literature" class="section level2">
 <h2>Literature</h2>
-<div id="refs" class="references">
-<div id="ref-zur2020sonderauswertung">
-<p>Zur Nieden, Felix, Bettina Sommer, and Stephan Lüken. 2020. “Sonderauswertung Der Sterbefallzahlen 2020.” <em>WISTA–Wirtschaft Und Statistik</em> 72 (4): 38–50.</p>
-</div>
-</div>
 </div>
 
 
