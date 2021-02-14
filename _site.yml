@@ -1,10 +1,10 @@
 name: "website"
 navbar:
-  title: "Covid-19"
+  title: "lookout"
   left:
-    - text: "The World"
+    - text: "2020: The World"
       href: index.html
-    - text: "Germany"
+    - text: "2020: Germany"
       href: Covid_19_Germany.html
 output:
   html_document:
