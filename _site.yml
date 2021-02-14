@@ -1,6 +1,6 @@
 name: "website"
 navbar:
-  title: "lookout"
+  title: "home"
   left:
     - text: "2020: The World"
       href: index.html
