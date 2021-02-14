@@ -1,0 +1,27 @@
+#Prädiktoren für Folgeerkrankungen von Diabetes infizieren
+#Darf man auf D und X1 gleichzeit konditionieren?
+
+library(dagitty)
+g <- dagitty('dag {
+X0 -> {D X1}
+D -> {X1 Y}
+X1 -> Y}')
+#plot(g)
+library(ggdag)
+ggdag(g) +
+  theme_dag()
+
+adjustmentSets(g, "X1", "Y", type="all" )
+
+#Risikofaktoren für Mortalität von Covid-19
+
+
+c <- dagitty('dag {
+{X0 X1} -> {KH Tod}
+KH -> {Tod}
+}')
+
+ggdag(c) +
+  theme_dag()
+
+adjustmentSets(c, "X0", "Tod", type="all" )

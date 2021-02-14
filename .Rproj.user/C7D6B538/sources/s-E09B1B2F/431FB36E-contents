@@ -1,5 +1,0 @@
-
-#file needs to be in github folder to integrate html with other files
-
-file.create(".nojekyll")
-

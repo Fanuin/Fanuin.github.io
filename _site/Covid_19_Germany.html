@@ -301,6 +301,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Germany: Mortality in times of Covid-19</h1>
+<h4 class="date">25 11 2020, Version 2 on 14 02 2021</h4>
 
 </div>
 
@@ -311,7 +312,9 @@ $(document).ready(function () {
 </div>
 <div id="absolute-mortality" class="section level2">
 <h2>Absolute Mortality</h2>
-<p>Figure 1 shows the mortality up to week 46 for year 2020 in contrast to the mean, minimum, and maximum mortality of the 4 preceding years.</p>
+<p>Figure 1 shows a simple relationship of total Covid 19 (C) and mortality (M) cases. If such a dependency holds then a simple comparison between then mortality in year 2020 with the preceding years may reveal the effect of Covid 19.</p>
+<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Figure 2 shows the mortality up to week 46 for year 2020 in contrast to the mean, minimum, and maximum mortality of the 4 preceding years.</p>
 <pre class="r"><code>#read data
 #source: https://www-genesis.destatis.de/
 pop &lt;- read_csv(&quot;Bevoelkerung_destatis.csv&quot;)
@@ -416,15 +419,17 @@ p2 &lt;- ggplot(pop_death_time_comp_cum, aes(x=week, y=deceased/1000, group=lege
   theme(legend.position = c(0.25, 0.8))
 
 #combine 2 plots next to each other
-title1=textGrob(&quot;Figure 1:Weekly mortality in Germany&quot;, gp=gpar(fontface=&quot;bold&quot;))
+title1=textGrob(&quot;Figure 2:Weekly mortality in Germany&quot;, gp=gpar(fontface=&quot;bold&quot;))
 grid.arrange(p1,  p2, ncol=2, top=title1)</code></pre>
-<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>When interpreting this figure we have to acknowledge that in 2018 there was a very high mortality due to a very severe influenza season in the first quarter. We see for 2020 three peaks of relatively high mortality in week 15, around week 32, and from week 42 onward. The first and the last peak was correlated with strong policy interventions (“lockdown”). We also see that the cumulative mortality in 2020 was relatively high, striving towards the maximum mortality of year 2018, which was used to justify the interventions.</p>
 <!--Our findings are in line with @zur2020sonderauswertung, who argued that absolute mortality in 2020 will probably not be higher than that of year 2018. -->
 </div>
 <div id="mortality-per-capita" class="section level2">
 <h2>Mortality per capita</h2>
-<p>However these total number can provide wrong evidence about the mortality, if the population changes between the years: If the population number increases we would expect that more people die. Figure 2 shows the data from above but uses the population of the beginning of the year in order to calculate number of deceased per capita.</p>
+<p>However these total number can provide wrong evidence about the mortality, if the population changes between the years: If the population number (P) increases we would expect that more people die (see Figure 3), also in absence of Covid-19.</p>
+<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Hence, we have to account for population changes. Figure 4 shows the data from above but uses the population of the beginning of each year in order to calculate number of deceased per capita.</p>
 <pre class="r"><code>#2 Calculate Mortality per capita (population at the beginning of year): 
 
 pop_death_time_comp_rel &lt;- pop_death_time_2020 %&gt;%
@@ -464,13 +469,23 @@ p4 &lt;- ggplot(pop_death_time_comp_cum_rel, aes(x=week, y=deceased*100000, grou
   theme(legend.position = c(0.25, 0.8))
 
 #combine 2 plots next to each other
-title2=textGrob(&quot;Figure 2: Weekly mortality per capita in Germany&quot; , gp=gpar(fontface=&quot;bold&quot;))
+title2=textGrob(&quot;Figure 4: Weekly mortality per capita in Germany&quot; , gp=gpar(fontface=&quot;bold&quot;))
 grid.arrange(p3,  p4, ncol=2, top=title2)</code></pre>
-<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>We find that changes of the number of citizens did not alter the found pattern from above. In the end of 2020 overall mortality increased strongly, probably driven by Covid-19. <!--However, until week 46 the cumulative mortality did not exceed the one of year 2018, in which a severe influenza season took place.--></p>
+<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>We find that changes of the number of citizens did not alter the found pattern from above. In the end of 2020 overall mortality increased strongly, probably driven by Covid-19. However, other potential relevant variables are not included into to the analysis. If the relationship between Covid-19 cases and mortality is confounded be the important variable age (see Figure 5) weed need to account for changes in the age structure over the years in our analysis.</p>
+<p><img src="Covid_19_Germany_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>After accounting for changes in the age structure for example <span class="citation">Ragnitz (2021)</span> did not find any increased mortality for the year 2020 in Germany. However, the author argued that this was due to an decreased mortality during 2020 summer.</p>
+<p>If you check <a href="https://kieranhealy.org/blog/archives/2020/12/18/cross-national-death-rates/" class="uri">https://kieranhealy.org/blog/archives/2020/12/18/cross-national-death-rates/</a> you’ll see that other countries were more severely hit by covid-19 associated mortality. It would be interesting to see the impact of covid-19 on mortality if important confounders are taken into account, also from an international perspective.</p>
+<p>Take care. :)</p>
+<!--However, until week 46 the cumulative mortality did not exceed the one of year 2018, in which a severe influenza season took place.-->
 </div>
-<div id="literature" class="section level2">
-<h2>Literature</h2>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-ragnitz2021">
+<p>Ragnitz, Joachim. 2021. “Hat die Corona-Pandemie zu einer Übersterblichkeit in Deutschland geführt?” <em>Ifo Institut</em>.</p>
+</div>
+</div>
 </div>
 
 
